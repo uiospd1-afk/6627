@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puffy Plush - เพื่อนซี้ตัวนุ่มนิ่ม น่ารักทุกย่างก้าว</title>
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           CSS STYLES (Material Design 3 & Minimal)
+           ================================---------- */
+        :root {
+            --primary-color: #FF8FAB; /* สีหลัก ชมพูพาสเทลน่ารัก */
+            --secondary-color: #BDE0FE; /* สีรอง ฟ้าพาสเทลละมุน */
+            --bg-color: #FFF9FB;
+            --surface-color: #FFFFFF;
+            --text-main: #4A4A4A;
+            --text-muted: #888888;
+            --shadow-sm: 0 4px 12px rgba(255, 143, 171, 0.15);
+            --shadow-md: 0 8px 24px rgba(255, 143, 171, 0.25);
+            --radius-lg: 24px;
+            --radius-full: 50px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-area img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-area span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 550px;
+            background: linear-gradient(135deg, rgba(255,143,171,0.15) 0%, rgba(189,224,254,0.3) 100%), 
+                        url('https://images.unsplash.com/photo-1558060370-d73ed5429b3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 48px 32px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            max-width: 700px;
+            width: 100%;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 32px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            background-color: #ff7597;
+        }
+
+        /* --- SECTION BASE STYLE --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            font-size: 1rem;
+        }
+
+        /* --- ABOUT US SECTION --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            height: 350px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* --- PRODUCT SECTION & FILTERS --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--surface-color);
+            border: 2px solid var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            backdrop-filter: blur(4px);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-buy {
+            background-color: var(--secondary-color);
+            color: #2b6cb0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .contact-item i {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 143, 171, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #2D2D2D;
+            color: #FFFFFF;
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #AAAAAA;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            padding-top: 20px;
+            margin-top: 10px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 24px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                clip-path: circle(0% at 100% 0);
+                transition: all 0.5s ease-in-out;
+            }
+
+            .nav-menu.active {
+                clip-path: circle(150% at 100% 0);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo-area">
+                <img src="https://images.unsplash.com/photo-1534723485860-8e35f850e3bb?auto=format&fit=crop&w=150&q=80" alt="Puffy Plush Logo">
+                <span>Puffy Plush</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">หน้าแรก</a></li>
+                <li><a href="#products">สินค้า</a></li>
+                <li><a href="#about">เกี่ยวกับเรา</a></li>
+                <li><a href="#contact">ติดต่อ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ==========================================
+       1. HERO SECTION
+       ========================================== -->
+    <section id="home" class="hero" style="margin-top: 0; height: 100vh;">
+        <div class="hero-content">
+            <h1>เพื่อนซี้ตัวนุ่มนิ่ม <span>Puffy Plush</span></h1>
+            <p>ตุ๊กตาน่ารัก ขนนุ่มฟู ปลอดภัย ไร้สารอันตราย เติมเต็มความสุขในทุกๆ วันของคุณ</p>
+            <a href="#products" class="btn-primary">ดูสินค้า</a>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       2. ABOUT SECTION
+       ========================================== -->
+    <section id="about">
+        <h2 class="section-title">เกี่ยวกับเรา</h2>
+        <p class="section-subtitle">ความสุขที่คุณกอดได้ในทุกๆ วัน</p>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Puffy Plush Store</h3>
+                <p>เราคือร้านค้ารวมตุ๊กตาน่ารัก คัดสรรวัตถุดิบเกรดพรีเมียม ขนนุ่มฟู ไม่กักเก็บฝุ่น ปลอดภัยแม้กระทั่งเด็กเล็ก มุ่งมั่นที่จะส่งมอบรอยยิ้มและความอบอุ่นผ่านตุ๊กตาตัวโปรดของคุณ</p>
+                <p>ไม่ว่าจะซื้อเป็นของขวัญวันเกิด ของขวัญรับปริญญา หรือเก็บสะสมไว้กอดนอน เรามีพร้อมบริการด้วยใจรัก!</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80" alt="เกี่ยวกับเรา">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       3. PRODUCT SECTION
+       ========================================== -->
+    <section id="products">
+        <h2 class="section-title">สินค้าของเรา</h2>
+        <p class="section-subtitle">เลือกตุ๊กตาตัวโปรดไปกอดกันเถอะ</p>
+        
+        <!-- Filter หมวดหมู่สินค้า (4 หมวด) -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+            <button class="filter-btn" data-filter="ตุ๊กตาสัตว์">ตุ๊กตาสัตว์</button>
+            <button class="filter-btn" data-filter="คาแรคเตอร์">คาแรคเตอร์</button>
+            <button class="filter-btn" data-filter="หมอนกอด">หมอนกอด</button>
+            <button class="filter-btn" data-filter="พวงกุญแจ">พวงกุญแจ</button>
+        </div>
+
+        <!-- แสดงสินค้า 10 รายการแบบ Grid Responsive -->
+        <div class="product-grid">
+            
+            <!-- สินค้า 1 -->
+            <div class="product-card" data-category="ตุ๊กตาสัตว์">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">ตุ๊กตาสัตว์</span>
+                    <img src="https://images.unsplash.com/photo-1534723485860-8e35f850e3bb?auto=format&fit=crop&w=600&q=80" alt="น้องหมีเนยขนนุ่ม">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">น้องหมีเนยขนนุ่ม</h3>
+                    <div class="product-footer">
+                        <span class="product-price">490 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 2 -->
+            <div class="product-card" data-category="ตุ๊กตาสัตว์">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">ตุ๊กตาสัตว์</span>
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80" alt="กระต่ายน้อยหูยาว">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">กระต่ายน้อยหูยาว</h3>
+                    <div class="product-footer">
+                        <span class="product-price">450 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 3 -->
+            <div class="product-card" data-category="คาแรคเตอร์">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">คาแรคเตอร์</span>
+                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=600&q=80" alt="แมวน้ำอ้วนจอมขี้เกียจ">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">แมวน้ำอ้วนจอมขี้เกียจ</h3>
+                    <div class="product-footer">
+                        <span class="product-price">590 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 4 -->
+            <div class="product-card" d            <!-- สินค้า 4 -->
+            <div class="product-card" data-category="หมอนกอด">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">หมอนกอด</span>
+                    <img src="https://images.unsplash.com/photo-1581557991964-125469da3b8a?auto=format&fit=crop&w=600&q=80" alt="ยูนิคอร์นพาสเทล">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">ยูนิคอร์นพาสเทล</h3>
+                    <div class="product-footer">
+                        <span class="product-price">650 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 5 -->
+            <div class="product-card" data-category="ตุ๊กตาสัตว์">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">ตุ๊กตาสัตว์</span>
+                    <img src="https://images.unsplash.com/photo-1558060370-d73ed5429b3e?auto=format&fit=crop&w=600&q=80" alt="เป็ดน้อยเหลืองจอมซน">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">เป็ดน้อยเหลืองจอมซน</h3>
+                    <div class="product-footer">
+                        <span class="product-price">390 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 6 -->
+            <div class="product-card" data-category="พวงกุญแจ">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">พวงกุญแจ</span>
+                    <img src="https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?auto=format&fit=crop&w=600&q=80" alt="แพนด้าแดงพวงกุญแจ">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">แพนด้าแดงพวงกุญแจ</h3>
+                    <div class="product-footer">
+                        <span class="product-price">190 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 7 -->
+            <div class="product-card" data-category="หมอนกอด">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">หมอนกอด</span>
+                    <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80" alt="ไดโนเสาร์เขียวขนนุ่ม">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">ไดโนเสาร์เขียวขนนุ่ม</h3>
+                    <div class="product-footer">
+                        <span class="product-price">550 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 8 -->
+            <div class="product-card" data-category="คาแรคเตอร์">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">คาแรคเตอร์</span>
+                    <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="น้องหมาคอร์กี้ก้นเด้ง">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">น้องหมาคอร์กี้ก้นเด้ง</h3>
+                    <div class="product-footer">
+                        <span class="product-price">480 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 9 -->
+            <div class="product-card" data-category="หมอนกอด">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">หมอนกอด</span>
+                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="หมอนข้างน้องแมวเหมียว">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">หมอนข้างน้องแมวเหมียว</h3>
+                    <div class="product-footer">
+                        <span class="product-price">620 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้า 10 -->
+            <div class="product-card" data-category="พวงกุญแจ">
+                <div class="product-img-wrapper">
+                    <span class="product-badge">พวงกุญแจ</span>
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80" alt="น้องแกะน้อยขนฟูพวงกุญแจ">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">น้องแกะน้อยขนฟูพวงกุญแจ</h3>
+                    <div class="product-footer">
+                        <span class="product-price">220 ฿</span>
+                        <a href="https://line.me" target="_blank" class="btn-buy">สั่งซื้อ</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+       4. CONTACT SECTION
+       ========================================== -->
+    <section id="contact">
+        <h2 class="section-title">ติดต่อเรา</h2>
+        <p class="section-subtitle">สอบถามข้อมูลเพิ่มเติมหรือสั่งซื้อสินค้าได้ที่ช่องทางเหล่านี้</p>
+        <div class="contact-container">
+            <div class="contact-info-list">
+                <div class="contact-item">
+                    <i class="fab fa-facebook-f"></i>
+                    <div>
+                        <strong>Facebook:</strong><br>
+                        <a href="https://facebook.com" target="_blank">PuffyPlushOfficial</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-line"></i>
+                    <div>
+                        <strong>LINE:</strong><br>
+                        <a href="https://line.me" target="_blank">@puffyplush</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>โทรศัพท์:</strong><br>
+                        <a href="tel:0891234567">089-123-4567</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>ที่อยู่ร้าน:</strong><br>
+                        <span>สยามสแควร์ ซอย 7 กรุงเทพมหานคร</span>
+                    </div>
+                </div>
+            </div>
+            <div class="map-wrapper">
+                <!-- Google Map Embed ตัวอย่าง -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.6318991471714!2d100.53171357688206!3d13.744793086646543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29930e2f5b8c9%3A0x2320b98762569e9a!2sSiam%20Square!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       5. FOOTER
+       ========================================== -->
+    <footer>
+        <div class="footer-content">
+            <h3>Puffy Plush Store</h3>
+            <p>เพื่อนซี้ตัวนุ่มนิ่ม น่ารักทุกย่างก้าว</p>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://line.me" target="_blank"><i class="fab fa-line"></i></a>
+                <a href="tel:0891234567"><i class="fas fa-phone-alt"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Puffy Plush. All Rights Reserved. Designed with Material Design 3.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       JAVASCRIPT (Animation & Interactive)
+       ========================================== -->
+    <script>
+        // เปิด-ปิดเมนูบนมือถือ (Responsive Hamburger Menu)
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // ปิดเมนูอัตโนมัติเมื่อคลิกลิงก์ในมือถือ
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // ฟังก์ชัน Filter สินค้าตามหมวดหมู่
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // เปลี่ยนสถานะปุ่ม Active
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.style.display = 'flex';
+                        // เพิ่ม Animation เล็กน้อยตอนแสดงผล
+                        card.style.animation = 'fadeInDown 0.5s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // เปลี่ยนสี Navbar และ Active Link ตามตำแหน่ง Scroll หน้าจอ
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
